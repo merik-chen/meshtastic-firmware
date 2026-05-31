@@ -10,8 +10,8 @@
 #define USE_SSD1306
 #endif
 
-#define I2C_SDA 17
-#define I2C_SCL 18
+#define I2C_SDA 11
+#define I2C_SCL 10
 
 // #define BATTERY_PIN 1
 // #define ADC_MULTIPLIER 2.0 
@@ -22,16 +22,16 @@
 #define USE_SX1262
 
 // 高速 SPI 匯流排腳位
-#define LORA_SCK 4
-#define LORA_CS 5
+#define LORA_CS 4
+#define LORA_MOSI 5
 #define LORA_MISO 6
-#define LORA_MOSI 7
+#define LORA_SCK 7
 
 // SX126x 核心控制介面
 #define SX126X_CS LORA_CS
-#define SX126X_BUSY 8
-#define SX126X_DIO1 9
-#define SX126X_RESET 10
+#define SX126X_BUSY 16
+#define SX126X_RESET 15
+#define SX126X_DIO1 18
 
 // ==========================================
 // E22P 射頻前端狀態控制與極限功率配置
@@ -42,7 +42,7 @@
 // 傳統 RadioLib 在 TX 時會將 RXEN 拉低 (0/1)，導致 E22P 進入 CLOSE 狀態而無法發射。
 // 解法：停用 RXEN，將 EN (Pin 6) 連接至 ESP32 S3 3V3，使其在喚醒時恆為 1。
 #define SX126X_RXEN RADIOLIB_NC // 停用原生的反相 RXEN 邏輯，設為未連接
-#define SX126X_TXEN 12// 綁定 T/R CTRL (Pin 7)，交由底層切換：1 為發射，0 為接收
+#define SX126X_TXEN 17// 綁定 T/R CTRL (Pin 7)，交由底層切換：1 為發射，0 為接收
 
 // E22P 內建高精度 TCXO，由 DIO3 供電 (1.8V)
 #define SX126X_DIO3_TCXO_VOLTAGE 1.8
